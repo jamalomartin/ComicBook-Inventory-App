@@ -1,0 +1,29 @@
+<div class="table-listing">
+  <input type="button" class="btn btn-sm" name="groupName" value="Submit" ng-click="save()">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    publisher
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Book #
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="comic in comics">
+            <tr>
+                <td> {{$index+1}} </td>
+                <td> {{comic.publisher}} </td>
+                <td> {{comic.title}} </td>
+                <td> {{comic.booknum}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

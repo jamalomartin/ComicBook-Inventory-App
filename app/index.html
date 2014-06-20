@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" ng-app="comicApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Comic-Inventory</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="css/comicapp-css.css" rel="stylesheet">
+</head>
+<body>
+  <div ng-controller="adder">
+    <!--nav bar start-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Comic-Inventory</a>
+            </div>
+            <form class="navbar-form navbar-left" id="addItem">
+                <div class="form-group input-group-sm">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
+                    <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
+                </div>
+                <input type="button" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+            </form>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#/Home">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--nav bar end-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <!--Sidebar content-->
+                <ul class="nav nav-sidebar">
+                    <li class="active">
+                        <a href="#/ComicBooks">List of Comics</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-sidebar">
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
+        </div>
+    </div>
+</div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="lib/jquery-2.1.1.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>

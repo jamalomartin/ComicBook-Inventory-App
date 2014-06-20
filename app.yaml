@@ -1,0 +1,28 @@
+application: comic-inventory-app
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: (.*)/
+  static_files: app\1/index.html
+  upload: app
+
+- url: (.*)
+  static_files: app\1
+  upload: app
+
+- url: /py/record_comics
+  script: py.record_comics.app
+
+- url: /py/retrieve_comics
+  script: py.retrieve_comics.app
+
+- url: /
+  script: py.main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"

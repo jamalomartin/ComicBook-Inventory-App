@@ -1,0 +1,28 @@
+<div class="table-listing">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    publisher
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Book #
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="comic in data" ng-init="viewComics()">
+            <tr>
+                <td> {{$index+1}} </td>
+                <td> {{comic.publisher}} </td>
+                <td> {{comic.title}} </td>
+                <td> {{comic.booknum}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
