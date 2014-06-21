@@ -6,7 +6,7 @@ angular.module('comicApp.controllers', [])
   .controller('adder', ['$scope', '$http', function($scope, $http) {
   	$scope.comics = [];
   	$scope.addBook = function() {
-        console.log('helo');
+        console.log('hello');
         var someBook = $scope.comics;
         var newpublisher = $scope.publisher;
         var newTitle = $scope.title;
@@ -27,26 +27,31 @@ angular.module('comicApp.controllers', [])
                 someBook.push({publisher:newpublisher, title:newTitle, booknum:newNumber});
             }
         }
-        $scope.save = function()  {$http({method: 'POST', url: '/py/record_comics', data: someBook}).
+        $http({method: 'POST', url: '/py/record_comics', data: someBook}).
             success(function() {
                 // TODO add a dialog for successful save
             }).
             error(function() {
                 alert('no');
             })
-        };
     };
   }])
-  .controller('getComics', ['$scope', '$http', function($scope, $http) {
-    $scope.viewComics = (function() {
-        $http({method: 'GET', url: '/retrieve_comics'})
-        .success(function(data) {
-            $scope.data = data;
+  .controller('getComics', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
+    function getComic() {
+        $http({method: 'GET', url: '/py/retrieve_comics'})
+        .success(function(comics) {
+            $scope.data = comics;
         })
         .error(function(data, status) {
             alert('error', status, data);
             console.log(data);
         });
-    });
-
+    };
+    getComic();// We call the function on initialization to load the list.
+    
+    // $interval runs the given function every X millisec (2nd arg)
+    $interval(function() {
+        getComic();
+        console.log('Hello');
+    },1000);
   }]);

@@ -6,6 +6,12 @@ threadsafe: yes
 
 handlers:
 
+- url: /py/record_comics
+  script: py.record_comics.app
+
+- url: /py/retrieve_comics
+  script: py.retrieve_comics.app
+
 - url: (.*)/
   static_files: app\1/index.html
   upload: app
@@ -13,12 +19,6 @@ handlers:
 - url: (.*)
   static_files: app\1
   upload: app
-
-- url: /py/record_comics
-  script: py.record_comics.app
-
-- url: /py/retrieve_comics
-  script: py.retrieve_comics.app
 
 - url: /
   script: py.main.app

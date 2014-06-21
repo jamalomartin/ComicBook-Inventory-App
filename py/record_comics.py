@@ -5,7 +5,6 @@ from models import Comic
 class PostComicList(webapp2.RequestHandler):
 	def post(self):
 	    comics = self.request.body
-	    print jamal
 	    comics = json.loads(comics)
 
 	    for comic in comics:

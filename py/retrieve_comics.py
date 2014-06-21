@@ -19,5 +19,5 @@ class GetComicList(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/retrieve_comics', GetComicList)
+    ('/py/retrieve_comics', GetComicList)
 ], debug=True)
