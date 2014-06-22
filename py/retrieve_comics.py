@@ -10,7 +10,9 @@ class GetComicList(webapp2.RequestHandler):
 	    comics = [  # list of comic dictionaries
 	    	{'publisher': c.publisher,
 	    	 'title': c.title,
-	    	 'booknum': c.booknum}
+	    	 'booknum': c.booknum,
+	    	 'writer': c.writer,
+	    	 'artist': c.artist}
 	    	 for c in comics
 	    ]
 	    comics = json.dumps(comics)  # json string

@@ -6,11 +6,12 @@ angular.module('comicApp.controllers', [])
   .controller('adder', ['$scope', '$http', function($scope, $http) {
   	$scope.comics = [];
   	$scope.addBook = function() {
-        console.log('hello');
         var someBook = $scope.comics;
         var newpublisher = $scope.publisher;
         var newTitle = $scope.title;
         var newNumber = $scope.booknum;
+        var newWriter = $scope.writer;
+        var newArtist = $scope.artist;
         var oldcomics = null;
 
         // checks for no blank data
@@ -19,12 +20,14 @@ angular.module('comicApp.controllers', [])
                 if (// checks for no duplicate data
                     (newpublisher.toLowerCase() === eachcomic.publisher.toLowerCase()) &&
                     (newTitle.toLowerCase() === eachcomic.title.toLowerCase()) &&
-                    (newNumber === eachcomic.booknum)) {
+                    (newNumber === eachcomic.booknum) &&
+                    (newWriter.toLowerCase() === eachcomic.writer.toLowerCase()) &&
+                    newArtist.toLowerCase() === eachcomic.artist.toLowerCase()) {
                     oldcomics = true;
                 }
             });
             if (!oldcomics) {
-                someBook.push({publisher:newpublisher, title:newTitle, booknum:newNumber});
+                someBook.push({publisher:newpublisher, title:newTitle, booknum:newNumber, writer:newWriter, artist:newArtist});
             }
         }
         $http({method: 'POST', url: '/py/record_comics', data: someBook}).
@@ -33,9 +36,9 @@ angular.module('comicApp.controllers', [])
             }).
             error(function() {
                 alert('no');
-            })
+            });
     };
-  }])
+}])
   .controller('getComics', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     function getComic() {
         $http({method: 'GET', url: '/py/retrieve_comics'})
@@ -48,10 +51,9 @@ angular.module('comicApp.controllers', [])
         });
     };
     getComic();// We call the function on initialization to load the list.
-    
+
     // $interval runs the given function every X millisec (2nd arg)
     $interval(function() {
         getComic();
-        console.log('Hello');
     },1000);
   }]);
