@@ -16,19 +16,14 @@ angular.module('comicApp.controllers', [])
 
         // checks for no blank data
         if (newpublisher && newTitle && newNumber ) {
-            angular.forEach ($scope.comics, function (eachcomic) {
-                if (// checks for no duplicate data
-                    (newpublisher.toLowerCase() === eachcomic.publisher.toLowerCase()) &&
-                    (newTitle.toLowerCase() === eachcomic.title.toLowerCase()) &&
-                    (newNumber === eachcomic.booknum) &&
-                    (newWriter.toLowerCase() === eachcomic.writer.toLowerCase()) &&
-                    newArtist.toLowerCase() === eachcomic.artist.toLowerCase()) {
-                    oldcomics = true;
-                }
-            });
-            if (!oldcomics) {
-                someBook.push({publisher:newpublisher, title:newTitle, booknum:newNumber, writer:newWriter, artist:newArtist});
-            }
+                someBook.push(
+                    {
+                        publisher:newpublisher,
+                        title:newTitle,
+                        booknum:newNumber,
+                        writer:newWriter,
+                        artist:newArtist
+                    });
         }
         $http({method: 'POST', url: '/py/record_comics', data: someBook}).
             success(function() {
@@ -46,7 +41,6 @@ angular.module('comicApp.controllers', [])
             $scope.data = comics;
         })
         .error(function(data, status) {
-            alert('error', status, data);
             console.log(data);
         });
     };

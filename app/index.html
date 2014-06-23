@@ -27,23 +27,11 @@
                     <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
                     <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
                 </div>
-                <input type="button" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+                <input type="submit" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
             </form>
         </div>
     </div>
-    <!--nav bar end-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <!--Sidebar content-->
-                <ul class="nav nav-sidebar">
-
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div ng-view></div>
-        </div>
+    <div ng-view></div>
     </div>
 </div>
   <!-- In production use:
