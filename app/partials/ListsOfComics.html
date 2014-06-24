@@ -1,3 +1,21 @@
+<!--nav bar start-->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">C.I.A.</a>
+        </div>
+        <form class="navbar-form navbar-left" id="addItem">
+            <div class="form-group input-group-sm">
+                <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
+                <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
+                <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
+                <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
+                <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
+            </div>
+            <input type="submit" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+        </form>
+    </div>
+</div>
 <div class="table-listing">
     <table class="table table-condensed">
         <thead>

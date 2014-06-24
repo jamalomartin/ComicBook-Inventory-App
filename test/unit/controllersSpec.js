@@ -3,18 +3,18 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function(){
-  beforeEach(module('myApp.controllers'));
+  beforeEach(module('comicApp.controllers'));
 
 
   it('should ....', inject(function($controller) {
     //spec body
-    var myCtrl1 = $controller('MyCtrl1', { $scope: {} });
-    expect(myCtrl1).toBeDefined();
+    var adder = $controller('adder', { $scope: {} });
+    expect(adder).toBeDefined();
   }));
 
   it('should ....', inject(function($controller) {
     //spec body
-    var myCtrl2 = $controller('MyCtrl2', { $scope: {} });
-    expect(myCtrl2).toBeDefined();
+    var getComics = $controller('getComics', { $scope: {} });
+    expect(getComics).toBeDefined();
   }));
 });
