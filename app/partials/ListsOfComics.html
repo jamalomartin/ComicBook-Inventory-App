@@ -16,8 +16,8 @@
         </form>
     </div>
 </div>
-<div class="table-listing">
-    <table class="table table-condensed">
+<div class="table-listing table-responsive" ng-controller="getComics">
+    <table class="table table-condensed table-hover">
         <thead>
             <tr>
                 <th>
@@ -40,7 +40,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody ng-repeat="comic in data" ng-init="viewComics()">
+        <tbody ng-repeat="comic in data">
             <tr>
                 <td> {{$index+1}} </td>
                 <td> {{comic.publisher}} </td>

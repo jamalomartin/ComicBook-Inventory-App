@@ -9,6 +9,6 @@ angular.module('comicApp', [
   'comicApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/ComicBooks', {templateUrl: 'partials/ListsOfComics.html', controller: 'getComics'});
+  $routeProvider.when('/ComicBooks', {templateUrl: 'partials/ListsOfComics.html', controller: 'adder'});
   $routeProvider.otherwise({redirectTo: '/ComicBooks'});
 }]);

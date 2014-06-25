@@ -12,10 +12,10 @@ angular.module('comicApp.controllers', [])
         var newNumber = $scope.booknum;
         var newWriter = $scope.writer;
         var newArtist = $scope.artist;
-        var oldcomics = null;
 
         // checks for no blank data
         if (newpublisher && newTitle && newNumber ) {
+            console.log('hello');
                 someBook.push(
                     {
                         publisher:newpublisher,
@@ -32,6 +32,7 @@ angular.module('comicApp.controllers', [])
             error(function() {
                 alert('no');
             });
+
     };
 }])
   .controller('getComics', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
