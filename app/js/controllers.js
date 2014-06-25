@@ -4,6 +4,8 @@
 
 angular.module('comicApp.controllers', [])
   .controller('adder', ['$scope', '$http', function($scope, $http) {
+    $scope.hideArtist = true;
+    $scope.hideTitle = true;
   	$scope.comics = [];
   	$scope.addBook = function() {
         var someBook = $scope.comics;
@@ -15,7 +17,6 @@ angular.module('comicApp.controllers', [])
 
         // checks for no blank data
         if (newpublisher && newTitle && newNumber ) {
-            console.log('hello');
                 someBook.push(
                     {
                         publisher:newpublisher,

@@ -13,6 +13,8 @@
                 <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
             </div>
             <input type="submit" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+            <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
+            <label class="checkbox"><input type="checkbox" ng-click='hideTitle=!hideTitle'>Hide Title</label>
         </form>
     </div>
 </div>
@@ -26,7 +28,7 @@
                 <th>
                     Publisher
                 </th>
-                <th>
+                <th ng-if='hideTitle'>
                     Title
                 </th>
                 <th>
@@ -35,7 +37,7 @@
                 <th>
                     Writer
                 </th>
-                <th>
+                <th ng-if='hideArtist'>
                     Artist
                 </th>
             </tr>
@@ -44,10 +46,10 @@
             <tr>
                 <td> {{$index+1}} </td>
                 <td> {{comic.publisher}} </td>
-                <td> {{comic.title}} </td>
+                <td ng-if='hideTitle'> {{comic.title}} </td>
                 <td> {{comic.booknum}} </td>
                 <td> {{comic.writer}} </td>
-                <td> {{comic.artist}} </td>
+                <td ng-if='hideArtist'> {{comic.artist}} </td>
             </tr>
         </tbody>
     </table>
