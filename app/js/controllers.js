@@ -5,7 +5,7 @@
 angular.module('comicApp.controllers', [])
   .controller('adder', ['$scope', '$http', function($scope, $http) {
     $scope.hideArtist = true;
-    $scope.hideTitle = true;
+    $scope.hideWriter = true;
   	$scope.comics = [];
   	$scope.addBook = function() {
         var someBook = $scope.comics;
