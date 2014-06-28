@@ -1,3 +1,7 @@
+body {
+    overflow: auto;
+}
+
 .checkbox {
     color: white;
     font-size: 10px;
@@ -11,12 +15,20 @@
 }
 
 .table-listing {
-    position: relative;
-    margin: 75px 110px;
-    padding: 39px 19px 14px;
     background-color: #fff;
     border: 1px solid #ddd;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    max-height: 490px;
+    overflow: auto;
+}
+
+/* Style for left and right tables*/
+.new-entries {
+    margin-top: 100px;
+}
+
+.current-collection {
+    margin-top: 100px;
 }
