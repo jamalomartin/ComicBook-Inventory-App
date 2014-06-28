@@ -5,5 +5,35 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('comicApp.services', []).
-  value('version', '0.1');
+angular.module('comicApp.services', [])
+  .service('SaveComic', function($http) {
+  	this.postComicData = function(comicBook) {
+  		$http({
+  			method:'POST',
+  			url: '/py/record_comics',
+  			data: comicBook
+  		}).
+  		success(function() {
+
+  		}).
+  		error(function() {
+
+  		});
+  	}
+})
+  .service('GetComic', function($http, $q) {
+  	this.getComics = function() {
+  		var deferred = $q.defer();
+  		$http({
+  			method: 'GET',
+  			url: '/py/retrieve_comics'
+  		}).
+  		success(function (data, status, header, config) {
+  			deferred.resolve(data);
+  		}).
+  		error(function (data, status) {
+  			deferred.reject(data);
+  		});
+  		return deferred.promise;
+  	}    
+});

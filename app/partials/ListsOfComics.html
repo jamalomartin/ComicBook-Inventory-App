@@ -9,10 +9,11 @@
                 <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
                 <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
                 <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
+                <input ng-if='hideWriter' type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
+                <input ng-if='hideArtist' type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
             </div>
             <input type="submit" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+            <br>
             <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
             <label class="checkbox"><input type="checkbox" ng-click='hideWriter=!hideWriter'>Hide Writer</label>
         </form>
@@ -42,13 +43,13 @@
                 </th>
             </tr>
         </thead>
-        <tbody ng-repeat="comic in data">
+        <tbody ng-repeat="comic in comics">
             <tr>
                 <td> {{$index+1}} </td>
                 <td> {{comic.publisher}} </td>
-                <td ng-if='hideWriter'> {{comic.title}} </td>
+                <td> {{comic.title}} </td>
                 <td> {{comic.booknum}} </td>
-                <td> {{comic.writer}} </td>
+                <td ng-if='hideWriter'> {{comic.writer}} </td>
                 <td ng-if='hideArtist'> {{comic.artist}} </td>
             </tr>
         </tbody>
