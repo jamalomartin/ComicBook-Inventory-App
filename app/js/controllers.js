@@ -2,13 +2,23 @@
 
 /* Controllers */
 
-angular.module('comicApp.controllers', [])
+angular.module('comicApp.controllers', ['ngGrid'])
   .controller('adder', ['$scope', '$http', 'SaveComic',function($scope, $http, SaveComic) {
-    $scope.hideArtist = true;
-    $scope.hideWriter = true;
-  	$scope.comics = [];
+    // $scope.hideArtist = true;
+    // $scope.hideWriter = true;
+  	var comics = [];
+    $scope.gridOptions = {
+        data: 'comicBook',
+        rowHeight: 18,
+        enablePinning: true,
+        columnDefs: [{ field: "publisher", pinned: true },
+                    { field: "title"},
+                    { field: "booknum"},
+                    { field: "writer"},
+                    { field: "artist"}]
+    };
   	$scope.addBook = function() {
-        var comicBook = $scope.comics;
+        $scope.comicBook = comics;
         var newpublisher = $scope.publisher;
         var newTitle = $scope.title;
         var newNumber = $scope.booknum;
@@ -17,7 +27,7 @@ angular.module('comicApp.controllers', [])
 
         // checks for no blank data
         if (newpublisher && newTitle && newNumber ) {
-            comicBook.push({
+            $scope.comicBook.push({
                     publisher:newpublisher,
                     title:newTitle,
                     booknum:newNumber,
@@ -25,7 +35,7 @@ angular.module('comicApp.controllers', [])
                     artist:newArtist
             });
         }
-        SaveComic.postComicData(comicBook);
+        // SaveComic.postComicData(comicBook);
         console.log($scope.comics);
     };
 }])
@@ -40,4 +50,14 @@ angular.module('comicApp.controllers', [])
         });
     };
     getComic();// We call the function on initialization to load the list.
+    $scope.get = {
+        data: 'comics',
+        rowHeight: 18,
+        enablePinning: true,
+        columnDefs: [{ field: "publisher", pinned: true },
+                    { field: "title"},
+                    { field: "booknum"},
+                    { field: "writer"},
+                    { field: "artist"}]
+    };
   }]);

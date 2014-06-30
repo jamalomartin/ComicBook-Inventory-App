@@ -19,7 +19,17 @@
         </form>
     </div>
 </div>
-<div class="col-xs-6 new-entries">
+<div>
+    <div ng-controller="adder" class="col-xs-6 new-entries">
+            <div class="gridStyle" ng-grid="gridOptions"></div>
+    </div>
+</div>
+<div>
+    <div ng-controller="getComics" class="col-xs-6 current-collection">
+            <div class="gridStyle" ng-grid="get"></div>
+    </div>
+</div>
+<!-- <div class="col-xs-6 new-entries">
     <h4>New Entries</h4>
     <div class="table-listing table-responsive">
         <table class="table table-condensed">
@@ -96,4 +106,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->
