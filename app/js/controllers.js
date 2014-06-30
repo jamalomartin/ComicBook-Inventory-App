@@ -25,7 +25,6 @@ angular.module('comicApp.controllers', [])
                     artist:newArtist
             });
         }
-        SaveComic.postComicData(comicBook);
         console.log($scope.comics);
     };
 }])
