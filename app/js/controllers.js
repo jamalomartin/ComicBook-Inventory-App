@@ -26,6 +26,7 @@ angular.module('comicApp.controllers', [])
             });
         }
         SaveComic.postComicData(comicBook);
+        console.log($scope.comics);
     };
 }])
   .controller('getComics', ['$scope',  'GetComic', function($scope, GetComic) {
