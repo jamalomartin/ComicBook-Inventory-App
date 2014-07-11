@@ -19,8 +19,9 @@
         </form>
     </div>
 </div>
-<div class="col-xs-6 new-entries">
+<div class="col-xs-6 new-entries" ng-controller="editModal">
     <h4>New Entries</h4>
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
     <div class="table-listing table-responsive">
         <table class="table table-condensed">
             <thead>
@@ -61,7 +62,7 @@
 <div class="col-xs-6 current-collection">
     <h4>Current Collection</h4>
     <div class="table-listing table-responsive" ng-controller="getComics">
-        <table class="table table-condensed">
+        <table id="maintable" class="table table-condensed">
             <thead>
                 <tr>
                     <th>
