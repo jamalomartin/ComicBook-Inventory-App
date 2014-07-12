@@ -41,28 +41,9 @@ angular.module('comicApp.controllers', [])
     };
     getComic();// We call the function on initialization to load the list.
   }])
-  .controller('editModal', function($scope, $modal, $log) {
-    $scope.open = function() {
-        console.log($scope.comics);
-        var modalInstance = $modal.open({
-            templateUrl: 'partials/editModal.html',
-            controller: 'ModalController',
-            resolve: {comics: function() {return $scope.comics;}}
-        });
-
-        modalInstance.result.then(function(selectedItem) {
-            $scope.selected = selectedItem;
-        }, function() {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-    }
-})
-  .controller('ModalController', function($scope, $modalInstance, comics) {
-    $scope.comics = comics
-    $scope.ok = function() {
-        $modalInstance.close($scope.selected);
-    };
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+  .controller('delete', function($scope) {
+    $scope.remove = function(item) {
+        var index = $scope.comics.indexOf(item);
+        $scope.comics.splice(index, 1);
     };
   });

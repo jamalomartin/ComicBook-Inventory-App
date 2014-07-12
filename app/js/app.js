@@ -2,7 +2,6 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('comicApp', [
-  'ui.bootstrap',
   'ngRoute',
   'comicApp.filters',
   'comicApp.services',

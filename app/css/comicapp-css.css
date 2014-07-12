@@ -1,5 +1,5 @@
 body {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .checkbox {
@@ -31,4 +31,8 @@ body {
 
 .current-collection {
     margin-top: 100px;
+}
+
+.modal {
+    overflow: hidden;
 }
