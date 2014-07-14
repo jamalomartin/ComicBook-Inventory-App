@@ -42,8 +42,7 @@ angular.module('comicApp.controllers', [])
     getComic();// We call the function on initialization to load the list.
   }])
   .controller('delete', function($scope) {
-    $scope.remove = function(item) {
-        var index = $scope.comics.indexOf(item);
-        $scope.comics.splice(index, 1);
+    $scope.remove = function() {
+        $scope.comics.splice(this.$index, 1);
     };
   });

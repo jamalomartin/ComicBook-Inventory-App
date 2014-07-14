@@ -149,7 +149,7 @@
                             <td> {{comic.writer}} </td>
                             <td> {{comic.artist}} </td>
                             <td> 
-                                <button type="button" class="btn btn-default btn-xs" ng-click='remove(item)'>
+                                <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
                                   <span class="glyphicon glyphicon-remove"> Delete</span>
                                 </button>
                             </td>
@@ -161,7 +161,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
