@@ -7,7 +7,7 @@ angular.module('comicApp.controllers', [])
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme.
 })
-  .controller('adder', ['$scope', '$http', function($scope, $http) {
+  .controller('adder', ['$scope', '$http', 'SaveComic' ,function($scope, $http, SaveComic) {
     $scope.hideArtist = true;
     $scope.hideWriter = true;
   	$scope.comics = [];
@@ -28,11 +28,19 @@ angular.module('comicApp.controllers', [])
                     writer:newWriter,
                     artist:newArtist
             });
+
+          SaveComic.postComicData(comicBook);
         }
+        $scope.publisher = null;
+        $scope.title = null;
+        $scope.booknum = null;
+        $scope.writer = null;
+        $scope.artist = null;
+        
     };
 }])
 
-  .controller('getComics', ['$scope',  'GetComic', function($scope, GetComic) {
+  .controller('getComics', ['$scope',  'GetComic', 'SaveComic', function($scope, GetComic, SaveComic) {
     $scope.gotComics = [];
     function getComic() {
         GetComic.getComics().then(function(data) {
@@ -42,6 +50,14 @@ angular.module('comicApp.controllers', [])
             $scope.error=errorMessage;
         });
     };
+    $scope.sync = function() {
+          while($scope.comics.length > 0) {
+              $scope.comics.pop();
+          };
+         setTimeout(function() {
+           getComic();
+         }, 0);
+      };
     getComic();// We call the function on initialization to load the list.
   }])
 
@@ -50,15 +66,7 @@ angular.module('comicApp.controllers', [])
         $scope.comics.splice(this.$index, 1);
     };
   })
+
   .controller('EditCtrl', function($scope) {
     $scope.comics;
-  })
-
-  .controller('Sync', ['$scope', 'SaveComic', 'GetComic', function($scope, SaveComic, GetComic) {
-      $scope.sync = function() {
-          SaveComic.postComicData($scope.comics);
-          while($scope.comics.length > 0) {
-              $scope.comics.pop();
-          };
-      };
-}]);
+  });

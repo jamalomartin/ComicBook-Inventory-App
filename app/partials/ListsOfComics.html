@@ -19,87 +19,89 @@
         </form>
     </div>
 </div>
-<div class="col-xs-6 new-entries" ng-controller="Sync">
-    <h4>New Entries</h4>
-   
-    <!-- Button trigger modal -->
-    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
-    <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
+<div ng-controller="getComics">
+    <div class="col-xs-6 new-entries">
+        <h4>New Entries</h4>
+       
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+        <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
 
-    <div class="table-listing table-responsive">
-        <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Publisher
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Book #
-                    </th>
-                    <th ng-if='hideWriter'>
-                        Writer
-                    </th>
-                    <th ng-if='hideArtist'>
-                        Artist
-                    </th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="comic in comics">
-                <tr>
-                    <td> {{$index+1}} </td>
-                    <td> {{comic.publisher}} </td>
-                    <td> {{comic.title}} </td>
-                    <td> {{comic.booknum}} </td>
-                    <td ng-if='hideWriter'> {{comic.writer}} </td>
-                    <td ng-if='hideArtist'> {{comic.artist}} </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-listing table-responsive">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Publisher
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Book #
+                        </th>
+                        <th ng-if='hideWriter'>
+                            Writer
+                        </th>
+                        <th ng-if='hideArtist'>
+                            Artist
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="comic in comics">
+                    <tr>
+                        <td> {{$index+1}} </td>
+                        <td> {{comic.publisher}} </td>
+                        <td> {{comic.title}} </td>
+                        <td> {{comic.booknum}} </td>
+                        <td ng-if='hideWriter'> {{comic.writer}} </td>
+                        <td ng-if='hideArtist'> {{comic.artist}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<div class="col-xs-6 current-collection" ng-controller="Sync">
-    <h4>Current Collection</h4>
-    <div class="table-listing table-responsive" ng-controller="getComics">
-        <table id="maintable" class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Publisher
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Book #
-                    </th>
-                    <th ng-if='hideWriter'>
-                        Writer
-                    </th>
-                    <th ng-if='hideArtist'>
-                        Artist
-                    </th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="gotComic in gotComics">
-                <tr>
-                    <td> {{$index+1}} </td>
-                    <td> {{gotComic.publisher}} </td>
-                    <td> {{gotComic.title}} </td>
-                    <td> {{gotComic.booknum}} </td>
-                    <td ng-if='hideWriter'> {{gotComic.writer}} </td>
-                    <td ng-if='hideArtist'> {{gotComic.artist}} </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="col-xs-6 current-collection">
+        <h4>Current Collection</h4>
+        <div class="table-listing table-responsive">
+            <table id="maintable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Publisher
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Book #
+                        </th>
+                        <th ng-if='hideWriter'>
+                            Writer
+                        </th>
+                        <th ng-if='hideArtist'>
+                            Artist
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="gotComic in gotComics">
+                    <tr>
+                        <td> {{$index+1}} </td>
+                        <td> {{gotComic.publisher}} </td>
+                        <td> {{gotComic.title}} </td>
+                        <td> {{gotComic.booknum}} </td>
+                        <td ng-if='hideWriter'> {{gotComic.writer}} </td>
+                        <td ng-if='hideArtist'> {{gotComic.artist}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
