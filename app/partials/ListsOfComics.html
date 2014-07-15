@@ -19,13 +19,12 @@
         </form>
     </div>
 </div>
-<div class="col-xs-6 new-entries">
+<div class="col-xs-6 new-entries" ng-controller="Sync">
     <h4>New Entries</h4>
    
     <!-- Button trigger modal -->
-    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-          Edit
-    </button>
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+    <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
 
     <div class="table-listing table-responsive">
         <table class="table table-condensed">
@@ -64,7 +63,7 @@
         </table>
     </div>
 </div>
-<div class="col-xs-6 current-collection">
+<div class="col-xs-6 current-collection" ng-controller="Sync">
     <h4>Current Collection</h4>
     <div class="table-listing table-responsive" ng-controller="getComics">
         <table id="maintable" class="table table-condensed">
@@ -90,14 +89,14 @@
                     </th>
                 </tr>
             </thead>
-            <tbody ng-repeat="comic in comics">
+            <tbody ng-repeat="gotComic in gotComics">
                 <tr>
                     <td> {{$index+1}} </td>
-                    <td> {{comic.publisher}} </td>
-                    <td> {{comic.title}} </td>
-                    <td> {{comic.booknum}} </td>
-                    <td ng-if='hideWriter'> {{comic.writer}} </td>
-                    <td ng-if='hideArtist'> {{comic.artist}} </td>
+                    <td> {{gotComic.publisher}} </td>
+                    <td> {{gotComic.title}} </td>
+                    <td> {{gotComic.booknum}} </td>
+                    <td ng-if='hideWriter'> {{gotComic.writer}} </td>
+                    <td ng-if='hideArtist'> {{gotComic.artist}} </td>
                 </tr>
             </tbody>
         </table>
@@ -114,7 +113,7 @@
       </div>
       <div class="modal-body">
         <div ng-controller="delete">
-            <div class="table-listing table-responsive">
+            <div class="table-listing table-responsive" ng-controller='EditCtrl'>
                 <table class="table table-condensed">
                     <thead>
                         <tr>
@@ -128,7 +127,7 @@
                                 Title
                             </th>
                             <th>
-                                Book #
+                                Book#
                             </th>
                             <th>
                                 Writer
@@ -143,11 +142,11 @@
                     <tbody ng-repeat="comic in comics">
                         <tr>
                             <td> {{$index+1}} </td>
-                            <td> {{comic.publisher}} </td>
-                            <td> {{comic.title}} </td>
-                            <td> {{comic.booknum}} </td>
-                            <td> {{comic.writer}} </td>
-                            <td> {{comic.artist}} </td>
+                            <td class="modal-tr" editable-text="comic.publisher"> {{comic.publisher}} </td>
+                            <td class="modal-tr" editable-text="comic.title"> {{comic.title}} </td>
+                            <td class="modal-tr" editable-text="comic.booknum"> {{comic.booknum}} </td>
+                            <td class="modal-tr" editable-text="comic.writer"> {{comic.writer}} </td>
+                            <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
                             <td> 
                                 <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
                                   <span class="glyphicon glyphicon-remove"> Delete</span>

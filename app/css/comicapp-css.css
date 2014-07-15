@@ -36,3 +36,11 @@ body {
 .modal {
     overflow: hidden;
 }
+
+.modal-tr {
+    width: 100px;
+}
+
+.editable-click {
+    border-bottom: none !important;
+}
