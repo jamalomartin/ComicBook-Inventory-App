@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .checkbox {
@@ -21,7 +21,7 @@ body {
     -moz-border-radius: 4px;
     border-radius: 4px;
     max-height: 490px;
-    overflow: auto;
+    overflow: auto
 }
 
 /* Style for left and right tables*/
@@ -47,4 +47,8 @@ body {
 
 .search-input {
     width: 200px;
+}
+
+.new-entrie-table {
+    margin-top: 5px;
 }
