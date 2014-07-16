@@ -44,3 +44,7 @@ body {
 .editable-click {
     border-bottom: none !important;
 }
+
+.search-input {
+    width: 200px;
+}
