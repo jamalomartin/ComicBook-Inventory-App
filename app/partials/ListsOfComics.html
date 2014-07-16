@@ -12,7 +12,7 @@
                 <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
                 <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
             </div>
-            <input type="submit" class="btn btn-sm" value="Add Comic" ng-click="addBook()">
+            <input type="submit" class="btn btn-primary btn-sm" value="Add Comic" ng-click="addBook()">
             <br>
             <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
             <label class="checkbox"><input type="checkbox" ng-click='hideWriter=!hideWriter'>Hide Writer</label>
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="col-xs-6 current-collection">
-        <h4>Current Collection</h4>
+        <h4>Current Collection</h4><input type="text" placeholder="Search" ng-model="search">
         <div class="table-listing table-responsive">
             <table id="maintable" class="table table-condensed">
                 <thead>
@@ -90,7 +90,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="gotComic in gotComics">
+                <tbody ng-repeat="gotComic in gotComics | filter:search">
                     <tr>
                         <td> {{$index+1}} </td>
                         <td> {{gotComic.publisher}} </td>
