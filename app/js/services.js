@@ -35,5 +35,13 @@ angular.module('comicApp.services', [])
   			deferred.reject(data);
   		});
   		return deferred.promise;
-  	}    
-});
+  	}  
+})
+  .service('DeleteComic', function($http) {
+    this.deleteComic = function() {
+      $http({
+        method: 'DELETE',
+        url: '/py/delete_comic'
+      });
+    }
+  });
