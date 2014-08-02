@@ -11,13 +11,8 @@ angular.module('comicApp.services', [])
   		$http({
   			method:'POST',
   			url: '/py/record_comics',
-  			data: comicBook
-  		}).
-  		success(function() {
-
-  		}).
-  		error(function() {
-
+  			data: comicBook,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
   		});
   	}
 })
@@ -38,10 +33,11 @@ angular.module('comicApp.services', [])
   	}  
 })
   .service('DeleteComic', function($http) {
-    this.deleteComic = function() {
+    this.deleteComic = function(comic) {
+      console.log(comic.key);
       $http({
         method: 'DELETE',
-        url: '/py/delete_comic'
+        url: '/py/delete_comic/' + comic.key
       });
     }
   });

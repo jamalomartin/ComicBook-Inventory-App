@@ -64,7 +64,7 @@
             </table>
         </div>
     </div>
-    <div class="col-xs-6 current-collection">
+    <div class="col-xs-6 current-collection" ng-controller="serverDelete">
         <h4>Current Collection</h4><input type="text" class="form-control search-input" placeholder="Search" ng-model="search">
         <div class="table-listing table-responsive">
             <table id="maintable" class="table table-condensed">
@@ -98,6 +98,11 @@
                         <td> {{gotComic.booknum}} </td>
                         <td ng-if='hideWriter'> {{gotComic.writer}} </td>
                         <td ng-if='hideArtist'> {{gotComic.artist}} </td>
+                        <td> 
+                            <button type="button" class="btn btn-default btn-xs" ng-click='ok(gotComic)'>
+                              <span class="glyphicon glyphicon-remove"> Delete</span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

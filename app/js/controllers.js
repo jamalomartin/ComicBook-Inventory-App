@@ -69,4 +69,11 @@ angular.module('comicApp.controllers', [])
 
   .controller('EditCtrl', function($scope) {
     $scope.comics;
+  })
+
+  .controller('serverDelete', function($scope, DeleteComic) {
+    $scope.ok = function(comic) {
+        DeleteComic.deleteComic(comic);
+
+    };
   });

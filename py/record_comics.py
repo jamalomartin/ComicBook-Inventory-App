@@ -2,6 +2,7 @@ import json
 import webapp2
 import logging
 from models import Comic
+from google.appengine.ext import ndb
 
 class PostComicList(webapp2.RequestHandler):
 	def post(self):
@@ -18,6 +19,7 @@ class PostComicList(webapp2.RequestHandler):
 	    				artist=comic.get('artist')
 	    				)
 	    	newComic.put()
+	    	self.response.out.write(newComic.key.urlsafe())
 
 app = webapp2.WSGIApplication([
     ('/py/record_comics', PostComicList)

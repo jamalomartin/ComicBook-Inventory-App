@@ -6,6 +6,10 @@ threadsafe: yes
 
 handlers:
 
+- url: /py/delete_comic
+  script: py.delete_comic.app
+  login: required
+
 - url: /py/record_comics
   script: py.record_comics.app
   login: required
