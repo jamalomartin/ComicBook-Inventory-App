@@ -34,7 +34,6 @@ angular.module('comicApp.services', [])
 })
   .service('DeleteComic', function($http) {
     this.deleteComic = function(comic) {
-      console.log(comic.key);
       $http({
         method: 'DELETE',
         url: '/py/delete_comic/' + comic.key

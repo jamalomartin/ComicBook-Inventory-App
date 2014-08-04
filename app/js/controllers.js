@@ -51,13 +51,15 @@ angular.module('comicApp.controllers', [])
         });
     };
     $scope.sync = function() {
-          while($scope.comics.length > 0) {
-              $scope.comics.pop();
-          };
-         setTimeout(function() {
-           getComic();
-         }, 0);
+      while($scope.comics.length > 0) {
+          $scope.comics.pop();
       };
+     // setTimeout(function() {
+     //   getComic();
+     // }, 0);
+
+      getComic()
+    };
     getComic();// We call the function on initialization to load the list.
   }])
 
@@ -71,9 +73,18 @@ angular.module('comicApp.controllers', [])
     $scope.comics;
   })
 
-  .controller('serverDelete', function($scope, DeleteComic) {
+  .controller('serverDelete', function($scope, $timeout, DeleteComic) {
     $scope.ok = function(comic) {
         DeleteComic.deleteComic(comic);
-
+        var index = -1;
+        for (var i = 0; i < $scope.gotComics.length; i++){
+          if ($scope.gotComics[i].key === comic.key) {
+            index = i;
+          }
+        }
+        if (index > 1) {
+          console.log('index', index);
+          $scope.gotComics.splice(index, 1);
+        }
     };
   });
