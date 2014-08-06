@@ -51,6 +51,7 @@ angular.module('comicApp.controllers', [])
         });
     };
     $scope.sync = function() {
+      $scope.comics
       while($scope.comics.length > 0) {
           $scope.comics.pop();
       };
@@ -82,8 +83,7 @@ angular.module('comicApp.controllers', [])
             index = i;
           }
         }
-        if (index > 1) {
-          console.log('index', index);
+        if (index > -1) {
           $scope.gotComics.splice(index, 1);
         }
     };
