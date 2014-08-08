@@ -8,6 +8,7 @@ angular.module('comicApp.controllers', [])
     editableOptions.theme = 'bs3'; // bootstrap3 theme.
 })
   .controller('adder', ['$scope', '$http', 'SaveComic' ,function($scope, $http, SaveComic) {
+
     $scope.hideArtist = true;
     $scope.hideWriter = true;
   	$scope.comics = [];
@@ -29,7 +30,8 @@ angular.module('comicApp.controllers', [])
                     artist:newArtist
             });
 
-          SaveComic.postComicData(comicBook);
+          // SaveComic.postComicData(comicBook);
+          console.log($scope.comics);
         }
         $scope.publisher = null;
         $scope.title = null;
@@ -38,6 +40,15 @@ angular.module('comicApp.controllers', [])
         $scope.artist = null;
         
     };
+    $scope.sync = function() {
+      console.log($scope.comics);
+      SaveComic.postComicData($scope.comics);
+      setTimeout(function() {
+        while($scope.comics.length > 0) {
+          $scope.comics.pop();
+        };
+      }, 100);
+    }  
 }])
 
   .controller('getComics', ['$scope',  'GetComic', 'SaveComic', function($scope, GetComic, SaveComic) {
@@ -49,17 +60,6 @@ angular.module('comicApp.controllers', [])
         function(errorMessage) {
             $scope.error=errorMessage;
         });
-    };
-    $scope.sync = function() {
-      $scope.comics
-      while($scope.comics.length > 0) {
-          $scope.comics.pop();
-      };
-     // setTimeout(function() {
-     //   getComic();
-     // }, 0);
-
-      getComic()
     };
     getComic();// We call the function on initialization to load the list.
   }])
