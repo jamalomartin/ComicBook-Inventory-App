@@ -1,126 +1,34 @@
-<!--nav bar start-->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">C.I.A.</a>
-        </div>
-        <form class="navbar-form navbar-left" id="addItem">
-            <div class="form-group input-group-sm">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
-                <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
-                <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
+<div>    
+    <!--nav bar start-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">C.I.A.</a>
             </div>
-            <input type="submit" class="btn btn-primary btn-sm" value="Add Comic" ng-click="addBook()">
-            <br>
-            <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
-            <label class="checkbox"><input type="checkbox" ng-click='hideWriter=!hideWriter'>Hide Writer</label>
-        </form>
-    </div>
-</div>
-<div ng-controller="getComics">
-    <div class="col-xs-6 new-entries">
-        <h4>New Entries</h4>
-       
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
-        <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
-
-        <div class="table-listing table-responsive new-entrie-table">
-            <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Publisher
-                        </th>
-                        <th>
-                            Title
-                        </th>
-                        <th>
-                            Book #
-                        </th>
-                        <th ng-if='hideWriter'>
-                            Writer
-                        </th>
-                        <th ng-if='hideArtist'>
-                            Artist
-                        </th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="comic in comics">
-                    <tr>
-                        <td> {{$index+1}} </td>
-                        <td> {{comic.publisher}} </td>
-                        <td> {{comic.title}} </td>
-                        <td> {{comic.booknum}} </td>
-                        <td ng-if='hideWriter'> {{comic.writer}} </td>
-                        <td ng-if='hideArtist'> {{comic.artist}} </td>
-                    </tr>
-                </tbody>
-            </table>
+            <form class="navbar-form navbar-left" id="addItem">
+                <div class="form-group input-group-sm">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
+                    <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
+                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
+                </div>
+                <input type="submit" class="btn btn-primary btn-sm" value="Add Comic" ng-click="addBook()">
+                <br>
+                <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
+                <label class="checkbox"><input type="checkbox" ng-click='hideWriter=!hideWriter'>Hide Writer</label>
+            </form>
         </div>
     </div>
-    <div class="col-xs-6 current-collection" ng-controller="serverDelete">
-        <h4>Current Collection</h4><input type="text" class="form-control search-input" placeholder="Search" ng-model="search">
-        <div class="table-listing table-responsive">
-            <table id="maintable" class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Publisher
-                        </th>
-                        <th>
-                            Title
-                        </th>
-                        <th>
-                            Book #
-                        </th>
-                        <th ng-if='hideWriter'>
-                            Writer
-                        </th>
-                        <th ng-if='hideArtist'>
-                            Artist
-                        </th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="gotComic in gotComics | filter:search">
-                    <tr>
-                        <td> {{$index+1}} </td>
-                        <td> {{gotComic.publisher}} </td>
-                        <td> {{gotComic.title}} </td>
-                        <td> {{gotComic.booknum}} </td>
-                        <td ng-if='hideWriter'> {{gotComic.writer}} </td>
-                        <td ng-if='hideArtist'> {{gotComic.artist}} </td>
-                        <td> 
-                            <button type="button" class="btn btn-default btn-xs" ng-click='ok(gotComic)'>
-                              <span class="glyphicon glyphicon-remove"> Delete</span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+    <div>
+        <div class="col-xs-6 new-entries">
+            <h4>New Entries</h4>
+           
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <div ng-controller="delete">
-            <div class="table-listing table-responsive" ng-controller='EditCtrl'>
+            <div class="table-listing table-responsive new-entrie-table">
                 <table class="table table-condensed">
                     <thead>
                         <tr>
@@ -134,28 +42,65 @@
                                 Title
                             </th>
                             <th>
-                                Book#
+                                Book #
                             </th>
-                            <th>
+                            <th ng-if='hideWriter'>
                                 Writer
                             </th>
-                            <th>
+                            <th ng-if='hideArtist'>
                                 Artist
-                            </th>
-                            <th>
                             </th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="comic in comics">
                         <tr>
                             <td> {{$index+1}} </td>
-                            <td class="modal-tr" editable-text="comic.publisher"> {{comic.publisher}} </td>
-                            <td class="modal-tr" editable-text="comic.title"> {{comic.title}} </td>
-                            <td class="modal-tr" editable-text="comic.booknum"> {{comic.booknum}} </td>
-                            <td class="modal-tr" editable-text="comic.writer"> {{comic.writer}} </td>
-                            <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
+                            <td> {{comic.publisher}} </td>
+                            <td> {{comic.title}} </td>
+                            <td> {{comic.booknum}} </td>
+                            <td ng-if='hideWriter'> {{comic.writer}} </td>
+                            <td ng-if='hideArtist'> {{comic.artist}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-6 current-collection" ng-controller="serverDelete">
+            <h4>Current Collection</h4><input type="text" class="form-control search-input" placeholder="Search" ng-model="search">
+            <div class="table-listing table-responsive">
+                <table id="maintable" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Publisher
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Book #
+                            </th>
+                            <th ng-if='hideWriter'>
+                                Writer
+                            </th>
+                            <th ng-if='hideArtist'>
+                                Artist
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="gotComic in gotComics | filter:search">
+                        <tr>
+                            <td> {{$index+1}} </td>
+                            <td> {{gotComic.publisher}} </td>
+                            <td> {{gotComic.title}} </td>
+                            <td> {{gotComic.booknum}} </td>
+                            <td ng-if='hideWriter'> {{gotComic.writer}} </td>
+                            <td ng-if='hideArtist'> {{gotComic.artist}} </td>
                             <td> 
-                                <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
+                                <button type="button" class="btn btn-default btn-xs" ng-click='ok(gotComic)'>
                                   <span class="glyphicon glyphicon-remove"> Delete</span>
                                 </button>
                             </td>
@@ -164,10 +109,67 @@
                 </table>
             </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div ng-controller="delete">
+                <div class="table-listing table-responsive" ng-controller='EditCtrl'>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Publisher
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Book#
+                                </th>
+                                <th>
+                                    Writer
+                                </th>
+                                <th>
+                                    Artist
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="comic in comics">
+                            <tr>
+                                <td> {{$index+1}} </td>
+                                <td class="modal-tr" editable-text="comic.publisher"> {{comic.publisher}} </td>
+                                <td class="modal-tr" editable-text="comic.title"> {{comic.title}} </td>
+                                <td class="modal-tr" editable-text="comic.booknum"> {{comic.booknum}} </td>
+                                <td class="modal-tr" editable-text="comic.writer"> {{comic.writer}} </td>
+                                <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
+                                <td> 
+                                    <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
+                                      <span class="glyphicon glyphicon-remove"> Delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 </div>

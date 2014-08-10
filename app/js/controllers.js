@@ -7,7 +7,16 @@ angular.module('comicApp.controllers', [])
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme.
 })
-  .controller('adder', ['$scope', '$http', 'SaveComic' ,function($scope, $http, SaveComic) {
+  .controller('adder', ['$scope', '$http', 'GetComic', 'SaveComic', '$timeout' ,function($scope, $http, GetComic, SaveComic, $timeout) {
+    $scope.gotComics = [];
+    function getComic() {
+        GetComic.getComics().then(function(data) {
+            $scope.gotComics = data;
+        },
+        function(errorMessage) {
+            $scope.error=errorMessage;
+        });
+    };
 
     $scope.hideArtist = true;
     $scope.hideWriter = true;
@@ -29,10 +38,8 @@ angular.module('comicApp.controllers', [])
                     writer:newWriter,
                     artist:newArtist
             });
-
-          // SaveComic.postComicData(comicBook);
-          console.log($scope.comics);
         }
+
         $scope.publisher = null;
         $scope.title = null;
         $scope.booknum = null;
@@ -41,28 +48,25 @@ angular.module('comicApp.controllers', [])
         
     };
     $scope.sync = function() {
-      console.log($scope.comics);
       SaveComic.postComicData($scope.comics);
-      setTimeout(function() {
-        while($scope.comics.length > 0) {
-          $scope.comics.pop();
-        };
-      }, 100);
-    }  
+      $scope.comics = [];
+      $timeout(function() {getComic();}, 1000);
+    }
+    getComic();// We call the function on initialization to load the list.
 }])
 
-  .controller('getComics', ['$scope',  'GetComic', 'SaveComic', function($scope, GetComic, SaveComic) {
-    $scope.gotComics = [];
-    function getComic() {
-        GetComic.getComics().then(function(data) {
-            $scope.gotComics = data;
-        },
-        function(errorMessage) {
-            $scope.error=errorMessage;
-        });
-    };
-    getComic();// We call the function on initialization to load the list.
-  }])
+  // .controller('getComics', ['$scope',  'GetComic', 'SaveComic', function($scope, GetComic, SaveComic) {
+  //   $scope.gotComics = [];
+  //   function getComic() {
+  //       GetComic.getComics().then(function(data) {
+  //           $scope.gotComics = data;
+  //       },
+  //       function(errorMessage) {
+  //           $scope.error=errorMessage;
+  //       });
+  //   };
+  //   getComic();// We call the function on initialization to load the list.
+  // }])
 
   .controller('delete', function($scope) {
     $scope.remove = function() {
