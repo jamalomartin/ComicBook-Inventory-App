@@ -14,9 +14,10 @@ class PostComicList(webapp2.RequestHandler):
 	    	newComic = Comic(
 	    				publisher=comic.get('publisher'),
 	    				title=comic.get('title'),
-	    				booknum=int(comic.get('booknum')),
+	    				booknum=comic.get('booknum'),
 	    				writer=comic.get('writer'),
-	    				artist=comic.get('artist')
+	    				artist=comic.get('artist'),
+	    				misc=comic.get('misc')
 	    				)
 	    	newComic.put()
 	    	self.response.out.write(newComic.key.urlsafe())

@@ -20,6 +20,7 @@ angular.module('comicApp.controllers', [])
 
     $scope.hideArtist = true;
     $scope.hideWriter = true;
+    $scope.hideMisc = true;
   	$scope.comics = [];
   	$scope.addBook = function() {
         var comicBook = $scope.comics;
@@ -28,15 +29,17 @@ angular.module('comicApp.controllers', [])
         var newNumber = $scope.booknum;
         var newWriter = $scope.writer;
         var newArtist = $scope.artist;
+        var newMisc = $scope.misc;
 
         // checks for no blank data
-        if (newpublisher && newTitle && newNumber ) {
+        if (newpublisher && newTitle) {
             comicBook.push({
                     publisher:newpublisher,
                     title:newTitle,
                     booknum:newNumber,
                     writer:newWriter,
-                    artist:newArtist
+                    artist:newArtist,
+                    misc:newMisc
             });
         }
 
@@ -45,6 +48,7 @@ angular.module('comicApp.controllers', [])
         $scope.booknum = null;
         $scope.writer = null;
         $scope.artist = null;
+        $scope.misc = null;
         
     };
     $scope.sync = function() {
@@ -54,19 +58,6 @@ angular.module('comicApp.controllers', [])
     }
     getComic();// We call the function on initialization to load the list.
 }])
-
-  // .controller('getComics', ['$scope',  'GetComic', 'SaveComic', function($scope, GetComic, SaveComic) {
-  //   $scope.gotComics = [];
-  //   function getComic() {
-  //       GetComic.getComics().then(function(data) {
-  //           $scope.gotComics = data;
-  //       },
-  //       function(errorMessage) {
-  //           $scope.error=errorMessage;
-  //       });
-  //   };
-  //   getComic();// We call the function on initialization to load the list.
-  // }])
 
   .controller('delete', function($scope) {
     $scope.remove = function() {

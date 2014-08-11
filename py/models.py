@@ -5,6 +5,7 @@ import logging
 class Comic(ndb.Model):
     publisher = ndb.StringProperty()
     title = ndb.StringProperty()
-    booknum = ndb.IntegerProperty()
+    booknum = ndb.StringProperty()
     writer = ndb.StringProperty()
     artist = ndb.StringProperty()
+    misc = ndb.StringProperty()

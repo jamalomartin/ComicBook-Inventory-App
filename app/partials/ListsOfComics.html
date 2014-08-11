@@ -7,16 +7,18 @@
             </div>
             <form class="navbar-form navbar-left" id="addItem">
                 <div class="form-group input-group-sm">
-                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="publisher" class="form-control" placeholder="Publisher">
-                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="title" class="form-control" placeholder="Title">
-                    <input type="text" pattern="\d*" ng-model="booknum" class="form-control" placeholder="Book #">
-                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="writer" class="form-control" placeholder="Writer">
-                    <input type="text" pattern="^[a-zA-Z]+$" ng-model="artist" class="form-control" placeholder="Artist">
+                    <input type="text" ng-model="publisher" class="form-control" placeholder="Publisher">
+                    <input type="text" ng-model="title" class="form-control" placeholder="Title">
+                    <input type="text" ng-model="booknum" class="form-control" placeholder="Book #">
+                    <input type="text" ng-model="writer" class="form-control" placeholder="Writer">
+                    <input type="text" ng-model="artist" class="form-control" placeholder="Artist">
+                    <input type="text" ng-model="misc" class="form-control" placeholder="Misc">
                 </div>
                 <input type="submit" class="btn btn-primary btn-sm" value="Add Comic" ng-click="addBook()">
                 <br>
                 <label class="checkbox"><input type="checkbox" ng-click='hideArtist=!hideArtist'>Hide Artist</label>
                 <label class="checkbox"><input type="checkbox" ng-click='hideWriter=!hideWriter'>Hide Writer</label>
+                <label class="checkbox"><input type="checkbox" ng-click='hideOther=!hideMisc'>Hide Misc</label>
             </form>
         </div>
     </div>
@@ -26,6 +28,7 @@
            
             <!-- Button trigger modal -->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+
             <button class="btn btn-primary btn-sm" ng-click='sync()'>sync</button>
 
             <div class="table-listing table-responsive new-entrie-table">
@@ -47,9 +50,8 @@
                             <th ng-if='hideWriter'>
                                 Writer
                             </th>
-                            <th ng-if='hideArtist'>
-                                Artist
-                            </th>
+                            <th ng-if='hideArtist'>Artist</th>
+                            <th ng-if='hideMisc'>Misc</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="comic in comics">
@@ -60,6 +62,7 @@
                             <td> {{comic.booknum}} </td>
                             <td ng-if='hideWriter'> {{comic.writer}} </td>
                             <td ng-if='hideArtist'> {{comic.artist}} </td>
+                            <td ng-if='hideMisc'> {{comic.misc}} </td>
                         </tr>
                     </tbody>
                 </table>
@@ -89,6 +92,7 @@
                             <th ng-if='hideArtist'>
                                 Artist
                             </th>
+                            <th ng-if='hideMisc'>Misc</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="gotComic in gotComics | filter:search">
@@ -99,6 +103,7 @@
                             <td> {{gotComic.booknum}} </td>
                             <td ng-if='hideWriter'> {{gotComic.writer}} </td>
                             <td ng-if='hideArtist'> {{gotComic.artist}} </td>
+                            <td ng-if='hideMisc'> {{gotComic.misc}} </td>
                             <td> 
                                 <button type="button" class="btn btn-default btn-xs" ng-click='ok(gotComic)'>
                                   <span class="glyphicon glyphicon-remove"> Delete</span>
@@ -143,8 +148,7 @@
                                 <th>
                                     Artist
                                 </th>
-                                <th>
-                                </th>
+                                <th>Misc</th>
                             </tr>
                         </thead>
                         <tbody ng-repeat="comic in comics">
@@ -155,6 +159,7 @@
                                 <td class="modal-tr" editable-text="comic.booknum"> {{comic.booknum}} </td>
                                 <td class="modal-tr" editable-text="comic.writer"> {{comic.writer}} </td>
                                 <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
+                                <td class="modal-tr" editable-text="comic.Misc"> {{comic.misc}} </td>
                                 <td> 
                                     <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
                                       <span class="glyphicon glyphicon-remove"> Delete</span>

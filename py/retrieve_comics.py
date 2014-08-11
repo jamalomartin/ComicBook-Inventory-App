@@ -13,6 +13,7 @@ class GetComicList(webapp2.RequestHandler):
 	    	 'booknum': c.booknum,
 	    	 'writer': c.writer,
 	    	 'artist': c.artist,
+	    	 'misc': c.misc,
 	    	 'key': c.key.urlsafe()}
 	    	 for c in comics
 	    ]
