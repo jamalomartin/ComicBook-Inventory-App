@@ -1,2 +1,3 @@
+*.pyc
 
-app/js/services.js
+*.pyc

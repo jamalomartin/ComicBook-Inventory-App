@@ -22,6 +22,7 @@ angular.module('comicApp.controllers', [])
     $scope.hideWriter = true;
     $scope.hideMisc = true;
   	$scope.comics = [];
+    
   	$scope.addBook = function() {
         var comicBook = $scope.comics;
         var newpublisher = $scope.publisher;
