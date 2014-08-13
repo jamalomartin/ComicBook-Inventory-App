@@ -1,8 +1,4 @@
 
 *.pyc
 
-py/__init__.pyc
-
-py/models.pyc
-
-py/retrieve_comics.pyc
+py/*.pyc
