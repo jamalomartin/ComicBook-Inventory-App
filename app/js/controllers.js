@@ -16,7 +16,7 @@ angular.module('comicApp.controllers', [])
         function(errorMessage) {
             $scope.error=errorMessage;
         });
-    };
+    }
 
     $scope.hideArtist = true;
     $scope.hideWriter = true;
@@ -56,7 +56,7 @@ angular.module('comicApp.controllers', [])
       SaveComic.postComicData($scope.comics);
       $scope.comics = [];
       $timeout(function() {getComic();}, 1000);
-    }
+    };
     getComic();// We call the function on initialization to load the list.
 }])
 
