@@ -7,7 +7,9 @@ angular.module('comicApp.controllers', [])
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme.
 })
-  .controller('adder', ['$scope', '$http', 'GetComic', 'SaveComic', '$timeout' ,function($scope, $http, GetComic, SaveComic, $timeout) {
+  .controller('adder', ['$scope', '$http', 'GetComic', 'SaveComic', '$timeout',
+    function($scope, $http, GetComic, SaveComic, $timeout) {
+
     $scope.gotComics = [];
     function getComic() {
         GetComic.getComics().then(function(data) {
@@ -18,6 +20,9 @@ angular.module('comicApp.controllers', [])
         });
     }
 
+    $scope.collection = '-publisher';
+    $scope.entries = '-title';
+    $scope.model = '-booknum';
     $scope.hideArtist = true;
     $scope.hideWriter = true;
     $scope.hideMisc = true;
