@@ -7,8 +7,16 @@
             </div>
             <form class="navbar-form navbar-left" id="addItem">
                 <div class="form-group input-group-sm">
-                    <input type="text" ng-model="publisher" class="form-control" placeholder="Publisher">
-                    <input type="text" ng-model="title" class="form-control" placeholder="Title">
+                    <input type="text" 
+                            ng-model="publisher"
+                            placeholder="Publisher"
+                            typeahead="pub for pub in publishers | filter:$viewValue | limitTo:8"
+                            class="form-control">
+                    <input type="text" 
+                            ng-model="title"
+                            class="form-control"
+                            placeholder="Title"
+                            typeahead="title for title in titles | filter:$viewValue | limitTo:8">
                     <input type="text" ng-model="booknum" class="form-control" placeholder="Book #">
                     <input type="text" ng-model="writer" class="form-control" placeholder="Writer">
                     <input type="text" ng-model="artist" class="form-control" placeholder="Artist">
@@ -169,7 +177,7 @@
                                 <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
                                 <td class="modal-tr" editable-text="comic.misc"> {{comic.misc}} </td>
                                 <td> 
-                                    <button type="button" class="btn btn-default btn-xs" ng-click='remove($index)'>
+                                    <button type="button" class="btn btn-default btn-xs" ng-click='remove($index + 1)'>
                                       <span class="glyphicon glyphicon-remove"> Delete</span>
                                     </button>
                                 </td>
