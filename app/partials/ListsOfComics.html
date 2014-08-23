@@ -18,8 +18,16 @@
                             placeholder="Title"
                             typeahead="title for title in titles | filter:$viewValue | limitTo:8">
                     <input type="text" ng-model="booknum" class="form-control" placeholder="Book #">
-                    <input type="text" ng-model="writer" class="form-control" placeholder="Writer">
-                    <input type="text" ng-model="artist" class="form-control" placeholder="Artist">
+                    <input type="text"
+                            ng-model="writer"
+                            class="form-control"
+                            placeholder="Writer"
+                            typeahead="writer for writer in nonDupeWriter | filter:$viewValue | limitTo:8">
+                    <input type="text"
+                            ng-model="artist"
+                            class="form-control"
+                            placeholder="Artist"
+                            typeahead="writer for writer in nonDupeArtist | filter:$viewValue | limitTo:8">
                     <input type="text" ng-model="misc" class="form-control" placeholder="Misc" autocomplete="on">
                 </div>
                 <input type="submit" class="btn btn-primary btn-sm" value="Add Comic" ng-click="addBook()">

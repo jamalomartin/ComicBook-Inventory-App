@@ -200,9 +200,38 @@ angular.module('comicApp.controllers', [])
                       'X-Men Legacy',
                     ]
 
+    function autoCompleteWriter(autoWriterComplete) {
+      $scope.nonDupeWriter = [];
+      autoWriterComplete.forEach(function(value) {
+        if ($scope.nonDupeWriter.indexOf(value) == -1) {
+          $scope.nonDupeWriter.push(value);
+        }
+      });
+      return $scope.nonDupeWriter;
+    }
+
+
+    function autoCompleteArtist(autoArtistComplete) {
+      $scope.nonDupeArtist = [];
+      autoArtistComplete.forEach(function(value) {
+        if ($scope.nonDupeArtist.indexOf(value) == -1) {
+          $scope.nonDupeArtist.push(value);
+        }
+      });
+      return $scope.nonDupeArtist;
+    }
+
     function getComic() {
         GetComic.getComics().then(function(data) {
-            $scope.gotComics = data;
+          $scope.gotComics = data;
+          var autoWriterComplete = [];
+          var autoArtistComplete = [];
+          for (var i = 0; i < data.length; i++) {
+            autoWriterComplete.push(data[i].writer);
+            autoArtistComplete.push(data[i].artist);
+          }
+          autoCompleteWriter(autoWriterComplete);
+          autoCompleteArtist(autoArtistComplete);
         },
         function(errorMessage) {
             $scope.error=errorMessage;
