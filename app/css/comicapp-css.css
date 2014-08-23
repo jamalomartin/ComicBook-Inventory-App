@@ -1,5 +1,5 @@
 body {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .checkbox {
@@ -7,11 +7,6 @@ body {
     font-size: 12px;
     margin-bottom: 15px !important;
     padding-right: 5px;
-}
-.nav-sidebar {
-    margin-right: -21px;
-    margin-bottom: 20px;
-    margin-left: -20px;
 }
 
 .table-listing {
@@ -37,11 +32,11 @@ body {
 
 /* Style for left and right tables*/
 .new-entries {
-    margin-top: 100px;
+    float: left;
 }
 
 .current-collection {
-    margin-top: 100px;
+    float: right;
 }
 
 .modal {

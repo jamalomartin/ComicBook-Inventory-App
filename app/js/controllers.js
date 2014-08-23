@@ -12,18 +12,13 @@ angular.module('comicApp.controllers', [])
 
     $scope.gotComics = [];
 
-    $scope.publishers = [
-                          'Marvel',
-                          'DC',
-                          'Image',
-                          'Dark Horse',
-                          'IDW',
-                          'Viz Media',
-                          'Oni Press',
-                          'Dynamite Entertainment'
-                          ];
+    
+    
 
-    $scope.titles = [
+
+
+    function autoCompleteTitle(autoTitleComplete) {
+      $scope.titles = [
                       'A+X',
                       'Action Comics',
                       'The Adventures of Superman',
@@ -197,8 +192,35 @@ angular.module('comicApp.controllers', [])
                       'Worlds Finest',
                       'X-Force',
                       'X-Men',
-                      'X-Men Legacy',
-                    ]
+                      'X-Men Legacy'
+                    ];
+      autoTitleComplete.forEach(function(value) {
+        if ($scope.titles.indexOf(value) == -1) {
+          $scope.titles.push(value);
+        }
+      });
+      return $scope.titles;
+    }
+
+    function autoCompletePublisher(autoPublisherComplete) {
+      $scope.publishers = [
+                          'Marvel',
+                          'DC',
+                          'Image',
+                          'Dark Horse',
+                          'IDW',
+                          'Viz Media',
+                          'Oni Press',
+                          'Dynamite Entertainment'
+                          ];
+
+      autoPublisherComplete.forEach(function(value) {
+        if ($scope.publishers.indexOf(value) == -1) {
+          $scope.publishers.push(value);
+        }
+      });
+      return $scope.publishers;
+    }
 
     function autoCompleteWriter(autoWriterComplete) {
       $scope.nonDupeWriter = [];
@@ -224,12 +246,18 @@ angular.module('comicApp.controllers', [])
     function getComic() {
         GetComic.getComics().then(function(data) {
           $scope.gotComics = data;
+          var autoPublisherComplete = [];
+          var autoTitleComplete = [];
           var autoWriterComplete = [];
           var autoArtistComplete = [];
           for (var i = 0; i < data.length; i++) {
+            autoPublisherComplete.push(data[i].publisher);
+            autoTitleComplete.push(data[i].title);
             autoWriterComplete.push(data[i].writer);
             autoArtistComplete.push(data[i].artist);
           }
+          autoCompletePublisher(autoPublisherComplete);
+          autoCompleteTitle(autoTitleComplete);
           autoCompleteWriter(autoWriterComplete);
           autoCompleteArtist(autoArtistComplete);
         },
