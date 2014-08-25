@@ -55,6 +55,10 @@ body {
     width: 200px;
 }
 
+.current-entrie-table {
+    margin-top: 5px;
+}
+
 .new-entrie-table {
     margin-top: 5px;
 }
