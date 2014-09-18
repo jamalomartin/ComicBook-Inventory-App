@@ -89,10 +89,10 @@
             </div>
         </div>
         <div class="col-xs-6 current-collection" ng-controller="serverDelete">
-            <h4>Current Collection</h4>
-            <span class="badge comic-total" ng-model="isQuestionInRange">Collection Total  {{gotComics.length}}</span>
+            <h4>Current Collection <span class="badge comic-total" ng-model="isQuestionInRange">{{gotComics.length}}</span></h4>
+            
             <input type="text" class="form-control search-input" placeholder="Search" ng-model="search">
-            <div class="table-listing table-responsive">
+            <div class="table-listing table-responsive new-entrie-table">
                 <table id="maintable" class="table table-condensed">
                     <thead>
                         <tr>

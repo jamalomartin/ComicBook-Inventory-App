@@ -7,15 +7,21 @@ angular.module('comicApp.controllers', [])
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme.
 })
-  .controller('adder', ['$scope', '$http', 'GetComic', 'SaveComic', '$timeout',
-    function($scope, $http, GetComic, SaveComic, $timeout) {
+  .controller('adder', ['$scope', '$http', 'GetComic', 'SaveComic', '$timeout', '$window',
+    function($scope, $http, GetComic, SaveComic, $timeout, $window) {
 
     $scope.gotComics = [];
 
-    
-    
-
-
+    //detect mobile
+    function detectmod() {
+      if ($window.navigator.userAgent.match(/iPad/i)
+        || $window.navigator.userAgent.match(/iPhone/i)
+        || $window.navigator.userAgent.match(/Android/i)) {
+        $timeout(function() {
+          $('.checkbox').trigger('click');
+        },0);
+      };
+    }
 
     function autoCompleteTitle(autoTitleComplete) {
       $scope.titles = [
@@ -308,7 +314,9 @@ angular.module('comicApp.controllers', [])
       $scope.comics = [];
       $timeout(function() {getComic();}, 1000);
     };
-    getComic();// We call the function on initialization to load the list.
+
+    detectmod(); 
+    getComic(); // We call the function on initialization to load the list.
 }])
 
   .controller('delete', function($scope) {
@@ -339,6 +347,4 @@ angular.module('comicApp.controllers', [])
   .controller('ComicList', function($scope, $http) {
     $scope.url = '';
     $scope.list = [];
-
-
   })

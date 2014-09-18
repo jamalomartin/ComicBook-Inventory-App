@@ -2,6 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('comicApp', [
+  'ngCsv',
   'xeditable',
   'ui.bootstrap',
   'ngRoute',
