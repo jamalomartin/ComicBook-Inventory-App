@@ -178,15 +178,15 @@
                         <tbody ng-repeat="comic in comics | orderBy:model:reverse">
                             <tr>
                                 <td> {{$index+1}} </td>
-                                <td class="modal-tr" editable-text="comic.publisher"> {{comic.publisher}} </td>
-                                <td class="modal-tr" editable-text="comic.title"> {{comic.title}} </td>
-                                <td class="modal-tr" editable-text="comic.booknum"> {{comic.booknum}} </td>
-                                <td class="modal-tr" editable-text="comic.writer"> {{comic.writer}} </td>
-                                <td class="modal-tr" editable-text="comic.artist"> {{comic.artist}} </td>
-                                <td class="modal-tr" editable-text="comic.misc"> {{comic.misc}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.publisher"> {{comic.publisher || 'edit'}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.title"> {{comic.title || 'edit'}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.booknum"> {{comic.booknum || 'edit'}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.writer"> {{comic.writer || 'edit'}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.artist"> {{comic.artist || 'edit'}} </td>
+                                <td class="modal-tr pointer" editable-text="comic.misc"> {{comic.misc || 'edit'}} </td>
                                 <td> 
                                     <button type="button" class="btn btn-default btn-xs" ng-click='remove($index + 1)'>
-                                      <span class="glyphicon glyphicon-remove"> Delete</span>
+                                      <span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </td>
                             </tr>
